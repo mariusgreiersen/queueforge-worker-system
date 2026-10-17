@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+.git
+.github
+.vscode
+.idea
+tests/.results
+benchmarks
+docs/screenshots
+*.log
+.env
+.env.*
+!.env.example

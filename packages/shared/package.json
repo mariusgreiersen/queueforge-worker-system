@@ -1,0 +1,16 @@
+{
+  "name": "@queueforge/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared schemas, types, constants and Node helpers used by the QueueForge API, worker and dashboard.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./node": "./src/node/index.ts"
+  },
+  "dependencies": {
+    "ioredis": "^5.11.1",
+    "pino": "^10.4.0",
+    "zod": "^4.6.7"
+  }
+}

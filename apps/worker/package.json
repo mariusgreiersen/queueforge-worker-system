@@ -1,0 +1,18 @@
+{
+  "name": "@queueforge/worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@queueforge/shared": "^1.0.0",
+    "bullmq": "^6.3.16",
+    "ioredis": "^5.11.1",
+    "pino": "^10.4.0",
+    "zod": "^4.6.7"
+  },
+  "description": "QueueForge worker process (BullMQ): executes jobs with retries and stalled-job recovery.",
+  "scripts": {
+    "build": "tsup",
+    "start": "node dist/main.js"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@queueforge/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@fastify/cors": "^11.3.1",
+    "@fastify/swagger": "^9.9.2",
+    "@fastify/swagger-ui": "^6.1.2",
+    "@queueforge/shared": "^1.0.0",
+    "bullmq": "^6.3.16",
+    "fastify": "^5.12.7",
+    "fastify-type-provider-zod": "^7.0.0",
+    "ioredis": "^5.11.1",
+    "pino": "^10.4.0",
+    "zod": "^4.6.7"
+  },
+  "description": "QueueForge REST API (Fastify): accepts, inspects and streams jobs.",
+  "scripts": {
+    "build": "tsup",
+    "start": "node dist/server.js"
+  }
+}

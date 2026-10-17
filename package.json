@@ -1,0 +1,47 @@
+{
+  "name": "queueforge-worker-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Redis-backed distributed background job processing system with crash recovery, retries, deduplication and a live monitoring dashboard.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "eslint": "^10.13.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "pino-pretty": "^13.2.0",
+    "testcontainers": "^12.2.1",
+    "tsup": "^9.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.5"
+  },
+  "scripts": {
+    "dev:api": "tsx watch apps/api/src/server.ts",
+    "dev:worker": "tsx watch apps/worker/src/main.ts",
+    "dev:dashboard": "npm run dev -w @queueforge/dashboard",
+    "build": "npm run build -w @queueforge/api -w @queueforge/worker -w @queueforge/dashboard",
+    "start:api": "node apps/api/dist/server.js",
+    "start:worker": "node apps/worker/dist/main.js",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json && tsc -p apps/dashboard/tsconfig.json",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "vitest run --config vitest.config.ts",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:reliability": "vitest run --config vitest.integration.config.ts tests/reliability",
+    "test:docker": "docker compose -f docker/docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from tests",
+    "demo:crash-recovery": "tsx scripts/demo-crash-recovery.ts",
+    "benchmark": "tsx scripts/benchmark.ts"
+  }
+}

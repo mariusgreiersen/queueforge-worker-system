@@ -1,0 +1,25 @@
+# Runs the full automated test suite (unit + API + integration + reliability) on Linux:
+#   npm run test:docker
+# Useful on Windows, where POSIX signal tests (graceful SIGTERM shutdown) are skipped natively.
+name: queueforge-test
+
+services:
+  redis:
+    image: redis:7.4-alpine
+    command: ['redis-server', '--maxmemory-policy', 'noeviction', '--save', '', '--appendonly', 'no']
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  tests:
+    build:
+      context: ..
+      target: test
+    environment:
+      REDIS_URL: redis://redis:6379
+      CI: 'true'
+    depends_on:
+      redis:
+        condition: service_healthy
